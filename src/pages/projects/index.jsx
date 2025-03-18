@@ -24,7 +24,18 @@ const ProjectsPage = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {projectsData.map((project) => (
-              <ProjectCard key={project.id} {...project} />
+              <ProjectCard
+                key={project.id}
+                id={project.id}
+                title={project.title}
+                description={project.description}
+                imageUrl={project.imageUrl}
+                year={project.year}
+                location={project.location}
+                category={project.category}
+                fullDescription={project.fullDescription}
+                additionalImages={project.additionalImages}
+              />
             ))}
           </motion.div>
         </div>
