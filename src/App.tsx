@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import Footer from "@/components/Footer";
 import { useRoutes, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/home";
@@ -8,9 +8,16 @@ import ProjectsPage from "./pages/projects";
 import ProjectDetail from "./pages/projects/[id]";
 import routes from "tempo-routes";
 
+// Add loading component for better UX
+const LoadingFallback = () => (
+  <div className="flex h-screen w-full items-center justify-center bg-white">
+    <div className="h-16 w-16 animate-spin rounded-full border-4 border-gray-200 border-t-gray-800" />
+  </div>
+);
+
 function App() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<LoadingFallback />}>
       <>
         <Routes>
           <Route path="/" element={<Home />} />
