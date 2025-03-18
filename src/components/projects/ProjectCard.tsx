@@ -1,9 +1,13 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Image } from "@/components/ui/image";
+import Link from "next/link";
 
 interface ProjectCardProps {
   id?: string;
@@ -42,11 +46,13 @@ const ProjectCard = ({
         >
           <Card className="overflow-hidden bg-white">
             <AspectRatio ratio={3 / 4}>
-              <img
-                src={imageUrl}
-                alt={title}
-                className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                />
+              </div>
             </AspectRatio>
             <CardContent className="p-4">
               <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
@@ -73,19 +79,22 @@ const ProjectCard = ({
           </div>
 
           <div className="grid gap-4">
-            <img
-              src={imageUrl}
-              alt={title}
-              className="w-full h-[400px] object-cover rounded-lg"
-            />
+            <div className="relative w-full h-[400px]">
+              <Image
+                src={imageUrl}
+                alt={title}
+                className="object-cover w-full h-full rounded-lg"
+              />
+            </div>
             <div className="grid grid-cols-2 gap-4">
               {additionalImages.map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`${title} detail ${index + 1}`}
-                  className="w-full h-48 object-cover rounded-lg"
-                />
+                <div key={index} className="relative w-full h-48">
+                  <Image
+                    src={img}
+                    alt={`${title} detail ${index + 1}`}
+                    className="object-cover w-full h-full rounded-lg"
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -100,13 +109,14 @@ const ProjectCard = ({
             transition={{ duration: 0.3, delay: 0.2 }}
             className="flex justify-center"
           >
-            <Button
-              size="lg"
-              onClick={() => (window.location.href = `/projects/${id}`)}
-              className="bg-gray-900 text-white hover:bg-gray-800 transition-colors"
-            >
-              View Case Study
-            </Button>
+            <Link href={`/projects/${id}`}>
+              <Button
+                size="lg"
+                className="bg-gray-900 text-white hover:bg-gray-800 transition-colors"
+              >
+                View Case Study
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </DialogContent>

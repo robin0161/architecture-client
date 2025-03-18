@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import FloatingNav from "@/components/navigation/FloatingNav";
+import Image from "next/image";
 
 const Services = () => {
   const services = [
@@ -62,13 +65,17 @@ const Services = () => {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="relative overflow-hidden rounded-lg shadow-lg">
+                <div className="relative overflow-hidden rounded-lg shadow-lg h-80">
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors z-10" />
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
                   <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end">
                     <h3 className="text-2xl font-bold text-white mb-4">
                       {service.title}

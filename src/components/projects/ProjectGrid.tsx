@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 import { Button } from "@/components/ui/button";
 import { projectsData } from "@/data/projects";
+import Link from "next/link";
 
 interface Project {
   id: string;
@@ -66,13 +68,14 @@ const ProjectGrid = ({
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex justify-center mt-12"
         >
-          <Button
-            size="lg"
-            onClick={() => (window.location.href = "/projects")}
-            className="bg-gray-900 text-white hover:bg-gray-800 transition-colors"
-          >
-            View All Projects
-          </Button>
+          <Link href="/projects">
+            <Button
+              size="lg"
+              className="bg-gray-900 text-white hover:bg-gray-800 transition-colors"
+            >
+              View All Projects
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

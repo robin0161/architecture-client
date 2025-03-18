@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Image } from "@/components/ui/image";
 
 interface HeroSliderProps {
   images?: string[];
@@ -9,8 +12,6 @@ interface HeroSliderProps {
   titles?: string[];
   descriptions?: string[];
 }
-
-import { useInView } from "framer-motion";
 
 const HeroSlider = ({
   images = [
@@ -67,11 +68,13 @@ const HeroSlider = ({
         >
           <div className="relative w-full h-full">
             <div className="absolute inset-0 bg-black/30 z-10" />
-            <img
-              src={images[currentIndex]}
-              alt={titles[currentIndex]}
-              className="w-full h-full object-cover"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={images[currentIndex]}
+                alt={titles[currentIndex]}
+                className="object-cover w-full h-full"
+              />
+            </div>
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}

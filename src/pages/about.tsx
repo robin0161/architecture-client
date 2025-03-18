@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import FloatingNav from "@/components/navigation/FloatingNav";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -44,13 +47,21 @@ const About = () => {
                 environment.
               </p>
             </div>
-            <motion.img
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c"
-              alt="Architecture Studio"
-              className="rounded-lg shadow-lg w-full"
-            />
+            <div className="relative w-full h-[300px] md:h-[400px]">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c"
+                  alt="Architecture Studio"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="rounded-lg shadow-lg object-cover"
+                />
+              </motion.div>
+            </div>
           </motion.div>
 
           <motion.div
